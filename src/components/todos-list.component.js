@@ -33,6 +33,18 @@ class TodosListComponent extends Component {
             })
     }
 
+    componentDidUpdate(prevProps, prevState, snapshot) {
+
+        axios.get('http://localhost:5000/todos')
+            .then(response => {
+                this.setState({ todos: response.data });
+            })
+            .catch(function (err){
+                console.log(err);
+            })
+
+    }
+
     todoList(){
 
         return this.state.todos.map(function (currentTodo, index){
